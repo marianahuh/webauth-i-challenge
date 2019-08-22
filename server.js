@@ -38,7 +38,9 @@ server.post('/api/login', validate, (req, res) => {
     .first()
     .then(user => {
       if (user) {
-        res.status(200).json({ message: `${user.username}Logged in!` });
+        res
+          .status(200)
+          .json({ message: `Welcome ${user.username}, you're logged in!` });
       } else {
         res.status(403).json({ message: 'You shall not pass!' });
       }
