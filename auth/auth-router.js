@@ -38,4 +38,19 @@ router.post('/login', (req, res) => {
     });
 });
 
+router.delete('/logout', (req, res) => {
+  if (req.session) {
+    console.log(req.session);
+    req.session.destroy(err => {
+      if (err) {
+        res.status(400).send('unable to logout...');
+      } else {
+        res.send('You have logged out successfully');
+      }
+    });
+  } else {
+    res.end();
+  }
+});
+
 module.exports = router;
